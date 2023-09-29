@@ -2,11 +2,21 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
+    background-color: cadetblue;
 }
 
 form {
-    max-width: 400px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 
+.campo {
+    margin-right: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-basis: calc(33.33% - 20px);
 }
 
 label, input, select, button {
@@ -15,8 +25,8 @@ label, input, select, button {
 }
 
 table {
-    width: 100%;
     border-collapse: collapse;
+
 }
 
 th, td {

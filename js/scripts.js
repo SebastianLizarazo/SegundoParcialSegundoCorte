@@ -107,7 +107,6 @@ searchButton.addEventListener('click', () => {
     const empleadoEncontrado = employees.find((empleado) => empleado.id === searchId);
 
     if (empleadoEncontrado) {
-        
         const modalContent = `
             Detalles del Empleado
             ID: ${empleadoEncontrado.id}
