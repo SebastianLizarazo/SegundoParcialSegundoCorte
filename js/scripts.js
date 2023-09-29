@@ -2,6 +2,23 @@
 let employees = [];
 let idCounter = 1;
 
+document.getElementById('apellidos').addEventListener('keypress',(event)=>{
+    if(!(/[a-zA-Z\s]/.test(event.key))){
+        event.preventDefault()
+    }
+})
+
+document.getElementById('nombres').addEventListener('keypress',(event)=>{
+    if(!(/[a-zA-Z\s]/.test(event.key))){
+        event.preventDefault()
+    }
+})
+
+document.getElementById('search-id').addEventListener('keypress',(event)=>{
+    if(!(/[0-9]/.test(event.key))){
+        event.preventDefault()
+    }
+})
 
 const form = document.getElementById('employee-form');
 const apellidosInput = document.getElementById('apellidos');
@@ -24,8 +41,6 @@ const departamentoSelected = document.getElementById('departamento');
 const xhr = new XMLHttpRequest();
 
 xhr.open("GET", "./resources/departments.json", true);
-
-
 xhr.onreadystatechange = () => {
     
     if (xhr.readyState === 4 && xhr.status === 200) {
