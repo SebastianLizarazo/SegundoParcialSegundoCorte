@@ -32,22 +32,18 @@ const salarioInput = document.getElementById('salario');
 const table = document.getElementById('employee-table').getElementsByTagName('tbody')[0];
 const searchIdInput = document.getElementById('search-id');
 const searchButton = document.getElementById('search-button');
-const employeeDetailsModal = document.getElementById('employee-details');
 
 
+const departamentoMapping = {};
 const departamentoSelected = document.getElementById('departamento');
-
-
 const xhr = new XMLHttpRequest();
-
 xhr.open("GET", "./resources/departments.json", true);
 xhr.onreadystatechange = () => {
-    
     if (xhr.readyState === 4 && xhr.status === 200) {
         const data = JSON.parse(xhr.responseText);
-        const departamentoSelected = document.getElementById('departamento'); 
-
+        const departamentoSelected = document.getElementById('departamento');
         data.forEach(department => {
+            departamentoMapping[department.code] = department.name;
             const option = document.createElement('option');
             option.value = department.code;
             option.textContent = department.name;
@@ -77,19 +73,17 @@ xhr2.onreadystatechange = () => {
 };
 xhr2.send();
 
-
-
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-
     const apellidos = apellidosInput.value;
     const nombres = nombresInput.value;
-    const departamento = departamentoSelect.value;
+    const departamentoCode = departamentoSelect.value;
     const municipioCode = municipioSelect.value;
     const fechaNacimiento = fechaNacimientoInput.value;
     const salario = salarioInput.value;
 
     const municipio = municipioMapping[municipioCode];
+    const departamento = departamentoMapping[departamentoCode];
     
     const empleado = {
         id: idCounter++,
@@ -110,7 +104,6 @@ form.addEventListener('submit', (e) => {
 
 searchButton.addEventListener('click', () => {
     const searchId = parseInt(searchIdInput.value);
-
     const empleadoEncontrado = employees.find((empleado) => empleado.id === searchId);
 
     if (empleadoEncontrado) {
